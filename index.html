@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nepal - Goa - Chennai | 17 Days</title>
+<meta name="description" content="17 days through Himalayan peaks at 4,130m, Poon Hill sunrise, Goa beaches and Chennai. Budget trip plan for Rs.45-50K.">
+<meta property="og:title" content="Nepal to Goa | 17 Days Trip Plan">
+<meta property="og:description" content="17 days through Himalayan peaks, Poon Hill sunrise, Goa beaches. Rs.45-50K all inclusive.">
+<meta property="og:image" content="Annapurna Base CamP.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -54,6 +61,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .share-btn:hover{background:var(--orange);border-color:var(--orange);transform:scale(1.1)}
 .share-btn svg{width:20px;height:20px;stroke:var(--text2);fill:none;stroke-width:2;transition:stroke .3s}
 .share-btn:hover svg{stroke:#fff}
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:40px;right:24px;z-index:998;width:48px;height:48px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;box-shadow:var(--sh);opacity:0;pointer-events:none;transform:translateY(10px)}
+.back-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-top:hover{background:var(--orange);border-color:var(--orange);transform:scale(1.1) translateY(0)}
+.back-top svg{width:20px;height:20px;stroke:var(--text2);fill:none;stroke-width:2;transition:stroke .3s}
+.back-top:hover svg{stroke:#fff}
 /* SOUND BUTTON */
 .audio-btn{position:fixed;bottom:160px;right:24px;z-index:998;width:48px;height:48px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;box-shadow:var(--sh)}
 .audio-btn:hover{background:var(--orange);border-color:var(--orange);transform:scale(1.1)}
@@ -65,7 +78,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .share-toast.show{opacity:1;transform:translateY(0)}
 
 /* HERO */
-.hero{height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.hero{height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#1a1a2e}
 .hero-video{position:absolute;inset:0;overflow:hidden}
 .hero-video video{width:100%;height:100%;object-fit:cover;filter:brightness(.4) saturate(1.2);transform:rotate(-90deg) scale(2.2);preload:auto}
 .hero-grain{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none}
@@ -121,10 +134,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 <!-- SCROLL PROGRESS -->
 <div class="scroll-progress" id="scroll-progress" style="width:0%"></div>
 <!-- SHARE BUTTON -->
-<div class="share-btn" onclick="shareTrip()"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></div>
+<div class="share-btn" onclick="shareTrip()" aria-label="Share this trip"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></div>
 <div class="share-toast" id="share-toast">Link copied! 🔗</div>
+<!-- BACK TO TOP -->
+<div class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></div>
 <!-- AUDIO TOGGLE BUTTON -->
-<div class="audio-btn" id="audio-btn" onclick="toggleAudio()">
+<div class="audio-btn" id="audio-btn" onclick="toggleAudio()" aria-label="Toggle audio">
   <svg id="audio-icon-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
   <svg id="audio-icon-on" viewBox="0 0 24 24" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.08"/></svg>
 </div>
@@ -171,8 +186,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
     <div class="cd-progress"><div class="cd-bar"><div class="cd-fill" id="cd-fill" style="width:0%"></div></div><p class="cd-text" id="cd-text">Loading...</p></div>
   </div>
 </section>
-</body>
-</html>
 
 <!-- MAP SECTION -->
 <section class="map-section" id="map">
@@ -443,7 +456,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 
 /* PRINT */
 @media print{
-  .nav,.share-btn,.share-toast,.scroll-progress,.mobile-nav,.ticker-wrap,.hero-video video,.hero-blob,.hero-grain,.countdown-bg,.snowfall{display:none!important}
+  .nav,.share-btn,.share-toast,.scroll-progress,.mobile-nav,.ticker-wrap,.hero-video video,.hero-blob,.hero-grain,.countdown-bg,.snowfall,.back-top,.audio-btn,.hero-quote{display:none!important}
   .hero{height:auto;padding:40px}
   .hero-gradient{display:none}
   .hero-content{color:#111;padding:0}
@@ -488,6 +501,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
   .map-route{flex-wrap:wrap;gap:20px;justify-content:center}
   .map-route::before{display:none}
   .share-btn{bottom:80px}
+  .back-top{bottom:80px;right:80px}
 }
 </style>
 
@@ -606,6 +620,10 @@ function shareTrip(){
   if(navigator.share){navigator.share({title:'Nepal Trip Jun 2026',text:'Check out our Nepal + Goa trip plan!',url:url})}
   else{navigator.clipboard.writeText(url).then(()=>{const t=document.getElementById('share-toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)})}
 }
+
+// BACK TO TOP
+const backTop=document.getElementById('back-top');
+window.addEventListener('scroll',()=>backTop.classList.toggle('visible',scrollY>600));
 
 // MOBILE NAV ACTIVE
 const sections=document.querySelectorAll('section[id]');
